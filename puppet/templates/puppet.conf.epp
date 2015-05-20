@@ -1,0 +1,31 @@
+# This file is being maintained by Puppet.
+# # DO NOT EDIT
+#
+[main]
+server = <%= $puppet::server %>
+archive_files = true
+archive_file_server = <%= $puppet::server %>
+digest_algorithm = <%= $puppet::digest_algorithm %>
+
+[agent]
+report = true
+classfile = $vardir/classes.txt
+graph = false
+pluginsync = true
+waitforcert = 120
+
+<% if $puppet::serverrole == 'true' { %>
+#[master]
+#vardir = /opt/puppetlabs/server/data/puppetserver
+#logdir = /var/log/puppetlabs/puppetserver
+#rundir = /var/run/puppetlabs/puppetserver
+#pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
+#codedir = /etc/puppetlabs/code
+#autosign = true
+#autosign = /etc/puppetlabs/puppet/autosign.conf
+#storeconfigs = true
+#storeconfigs_backend = puppetdb
+#reports = store,puppetdb
+#reports = puppetdb
+<% } %>
+
