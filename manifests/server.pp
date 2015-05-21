@@ -11,9 +11,10 @@
 # Copyright 2015 sixt AG
 #
 class puppet::server (
-  $package_name 	      = 'puppetserver',
-  $routes_file 		      = '/etc/puppetlabs/puppet/routes.yaml',
-  $routes_content	      = 'puppet/routes.yaml.epp',
+  $package_name         = 'puppetserver',
+  $package_ensure       = 'present',
+  $routes_file          = '/etc/puppetlabs/puppet/routes.yaml',
+  $routes_content       = 'puppet/routes.yaml.epp',
   $routes_terminus      = 'puppetdb',
   $routes_cache         = 'yaml',
   $vardir               = '/opt/puppetlabs/server/data/puppetserver',
@@ -27,12 +28,12 @@ class puppet::server (
   $reports              = 'store,puppetdb',
 ) {
 
-#	package { $package_name:
-#		ensure	=> $package_ensure,
-#	}
+  package { $package_name:
+    ensure => $package_ensure,
+  }
 
-	file { 'routes.yaml':
-		path 		=> $routes_file,
-		content => epp($routes_content),
-	}
+  file { 'routes.yaml':
+    path    => $routes_file,
+    content => epp($routes_content),
+  }
 }

@@ -11,23 +11,23 @@
 # Copyright 2015 sixt AG
 #
 class puppet (
-  $serverrole      	 	 = 'false',
+  $serverrole          = 'false',
   $default_file_ensure = 'file',
-  $default_file_owner	 = 'root',
-  $default_file_group	 = 'root',
-  $default_file_mode	 = '0644',
-  $server            	 = 'puppetmaster.tld',
-  $ca_server         	 = 'puppetmaster.tld',
-  $digest_algorithm	 	 = 'sha256',
+  $default_file_owner  = 'root',
+  $default_file_group  = 'root',
+  $default_file_mode   = '0644',
+  $server              = 'puppetmaster.tld',
+  $ca_server           = 'puppetmaster.tld',
+  $digest_algorithm    = 'sha256',
   $archive_files       = true,
 ) {
 
-	File {
-		ensure 	=> $default_file_ensure,
-		owner 	=> $default_file_owner,
-		group		=> $default_file_group,
-		mode		=> $default_file_mode,
-	}
+  File {
+    ensure => $default_file_ensure,
+    owner  => $default_file_owner,
+    group  => $default_file_group,
+    mode   => $default_file_mode,
+  }
 
   case $serverrole {
     'true': {

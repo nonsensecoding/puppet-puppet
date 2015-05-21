@@ -36,7 +36,8 @@ class puppet::agent (
   $graph                        = false,
   $pluginsync                   = true,
   $waitforcert                  = '120',
-) {
+)
+{
 
   include cron
 
@@ -47,9 +48,9 @@ class puppet::agent (
     $cron_minute = $agent_cron_minute
   }
 
-	package { $agent_package_name:
-		ensure => $agent_package_ensure,
-	}
+  package { $agent_package_name:
+    ensure => $agent_package_ensure,
+  }
 
   if $::puppet::serverole == 'true' {
     require '::puppet::server'
@@ -62,48 +63,47 @@ class puppet::agent (
   }
 
   cron { $agent_cron_name:
-    ensure  	=> present,
-    user    	=> $agent_cron_user,
-		minute 		=> $cron_minute,
-		hour 			=> $agent_cron_hour,
-		monthday	=> $agent_cron_day,
-		command 	=> $agent_cron_command,
-    require 	=> [ Package[$agent_package_name],
-									Service['crond'] ],
+    ensure   => present,
+    user     => $agent_cron_user,
+    minute   => $cron_minute,
+    hour     => $agent_cron_hour,
+    monthday => $agent_cron_day,
+    command  => $agent_cron_command,
+    require  => [ Package[$agent_package_name], Service['crond'] ],
   }
 
   file { 'agent_symlink_puppet':
     ensure  => link,
-    path		=> $agent_symlink_puppet,
+    path    => $agent_symlink_puppet,
     target  => $agent_symlink_puppet_target,
     require => Package[$agent_package_name],
   }
 
   file { 'agent_symlink_hiera':
-    ensure 	=> link,
-    path		=> $agent_symlink_hiera,
-    target 	=> $agent_symlink_hiera_target,
-    require	=> Package[$agent_package_name],
+    ensure  => link,
+    path    => $agent_symlink_hiera,
+    target  => $agent_symlink_hiera_target,
+    require => Package[$agent_package_name],
   }
 
   file {'agent_symlink_facter':
     ensure  => link,
-		path 		=> $agent_symlink_facter,
+    path    => $agent_symlink_facter,
     target  => $agent_symlink_facter_target,
     require => Package[$agent_package_name],
   }
 
   file { 'agent_symlink_cfacter':
-    ensure  	=> link,
-		path 			=> $agent_symlink_cfacter,
-    target  	=> $agent_symlink_cfacter_target,
-    require  	=> Package[$agent_package_name],
+    ensure  => link,
+    path    => $agent_symlink_cfacter,
+    target  => $agent_symlink_cfacter_target,
+    require => Package[$agent_package_name],
   }
 
   file { 'agent_symlink_mco':
     ensure  => link,
-		path		=> $agent_symlink_mco,
-   	target  => $agent_symlink_mco_target,
+    path    => $agent_symlink_mco,
+    target  => $agent_symlink_mco_target,
     require => Package[$agent_package_name],
   }
 }
