@@ -11,22 +11,28 @@
 # Copyright 2015 sixt AG
 #
 class puppet::server (
-$server_package_name 		= 'puppetserver',
-$server_routes_file 		= '/etc/puppetlabs/puppet/routes.yaml'
-$server_routes_content	= epp(puppet/routes.yaml.epp),
+  $package_name 	      = 'puppetserver',
+  $routes_file 		      = '/etc/puppetlabs/puppet/routes.yaml',
+  $routes_content	      = 'puppet/routes.yaml.epp',
+  $routes_terminus      = 'puppetdb',
+  $routes_cache         = 'yaml',
+  $vardir               = '/opt/puppetlabs/server/data/puppetserver',
+  $logdir               = '/var/log/puppetlabs/puppetserver',
+  $rundir               = '/var/run/puppetlabs/puppetserver',
+  $pidfile              = '/var/run/puppetlabs/puppetserver/puppetserver.pid',
+  $codedir              = '/etc/puppetlabs/code',
+  $autosign             = true,
+  $storeconfigs         = true,
+  $storeconfigs_backend = 'puppetdb',
+  $reports              = 'store,puppetdb',
 ) {
 
-	package {$server_package_name: 
-		ensure	=> $server_package_ensure
-		name 		=> $osfamily ? {
-		RedHat	=> 'puppetserver',
-		default	=> 'puppetserver',
-		},
+#	package { $package_name:
+#		ensure	=> $package_ensure,
+#	}
+
+	file { 'routes.yaml':
+		path 		=> $routes_file,
+		content => epp($routes_content),
 	}
-
-	file {'routes.yaml'
-		path 		=> $server_routes_file,
-		content => $server_routes_content,
-	}	
-
 }

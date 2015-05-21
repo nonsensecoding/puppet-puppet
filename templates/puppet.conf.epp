@@ -2,30 +2,28 @@
 # # DO NOT EDIT
 #
 [main]
-server = <%= $puppet::server %>
-archive_files = true
-archive_file_server = <%= $puppet::server %>
-digest_algorithm = <%= $puppet::digest_algorithm %>
+server = <%= $::puppet::server %>
+archive_files = <%= $::puppet::archive_files %>
+archive_file_server = <%= $::puppet::server %>
+digest_algorithm = <%= $::puppet::digest_algorithm %>
 
 [agent]
-report = true
-classfile = $vardir/classes.txt
-graph = false
-pluginsync = true
-waitforcert = 120
+report = <%= $::puppet::agent::report %>
+classfile = <%= $::puppet::agent::classfile %>
+graph = <%= $::puppet::agent::graph %>
+pluginsync = <%= $::puppet::agent::pluginsync %>
+waitforcert = <%= $::puppet::agent::waitforcert %>
 
-<% if $puppet::serverrole == 'true' { %>
-#[master]
-#vardir = /opt/puppetlabs/server/data/puppetserver
-#logdir = /var/log/puppetlabs/puppetserver
-#rundir = /var/run/puppetlabs/puppetserver
-#pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
-#codedir = /etc/puppetlabs/code
-#autosign = true
-#autosign = /etc/puppetlabs/puppet/autosign.conf
-#storeconfigs = true
-#storeconfigs_backend = puppetdb
-#reports = store,puppetdb
-#reports = puppetdb
+<% if $::puppet::serverrole == 'true' { -%>
+[master]
+vardir = <%= $::puppet::server::vardir %>
+logdir = <%= $::puppet::server::logdir %>
+rundir = <%= $::puppet::server::rundir %>
+pidfile = <%= $::puppet::server::pidfile %>
+codedir = <%= $::puppet::server::codedir %>
+autosign = <%= $::puppet::server::autosign %>
+storeconfigs = <%= $::puppet::server::storeconfigs %>
+storeconfigs_backend = <%= $::puppet::server::storeconfigs_backend %>
+reports = <%= $::puppet::server::reports %>
 <% } %>
 
