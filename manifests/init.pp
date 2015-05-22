@@ -18,6 +18,8 @@ class puppet (
   $default_file_mode   = '0644',
   $server              = 'puppetmaster.tld',
   $ca_server           = 'puppetmaster.tld',
+  $puppetdb_server     = 'puppetdb.tld',
+  $puppetdb_port       = '8081',
   $digest_algorithm    = 'sha256',
   $archive_files       = true,
 ) {
