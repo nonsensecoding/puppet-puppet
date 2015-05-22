@@ -22,13 +22,6 @@ class puppet (
   $archive_files       = true,
 ) {
 
-  File {
-    ensure => $default_file_ensure,
-    owner  => $default_file_owner,
-    group  => $default_file_group,
-    mode   => $default_file_mode,
-  }
-
   case $serverrole {
     'true': {
       require '::puppet::server'
