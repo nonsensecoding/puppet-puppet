@@ -31,9 +31,9 @@ class puppet::agent (
   $runs_per_hour          = '4',
   $cron_day               = '*',
   $cron_hour              = '*',
-  $cron_command           = '/usr/local/bin/puppet agent -o --no-daemonize',
+  $cron_command           = '/usr/local/bin/puppet agent --onetime --no-daemonize',
   $report                 = true,
-  $classfile              = '$vardir/classes.txt'
+  $classfile              = '$vardir/classes.txt',
   $graph                  = false,
   $pluginsync             = true,
   $waitforcert            = '120',
