@@ -11,7 +11,6 @@
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
 
 ## Overview
 
@@ -22,7 +21,7 @@ This module was written for Puppet 4.0.0. Not sure if also working with versions
 Supported OSes are RHEL based systems. This module was tested on
 * CentOS 6.6
 * CentOS 5.11
- 
+
 ## Module Description
 
 
@@ -30,14 +29,11 @@ Supported OSes are RHEL based systems. This module was tested on
 
 ### What puppet affects
 
-* includes sixt-cron module to ensure cron is up and running. 
-* Puppet server module not working currently. DO NOT APPLY THIS MODULE ON A PUPPETSERVER!
-  
+* includes sixt-cron module to ensure cron is up and running.
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+no special requirements, except the standard requirements for puppet.
 
 ### Beginning with puppet
 
@@ -52,15 +48,10 @@ The very basic steps needed for a user to get the module up and running.
 
 Tested with CentOS 6.6 and 5.11.
 
-No implementation for other systems than RHEL based done or planned. 
-
-## Development
-
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc 
+No implementation for other systems than RHEL based done or planned.
 
 
-Puppet server class not working yet, needs some special treatment!
+## Release Notes/Contributors/Etc
+
+
 
