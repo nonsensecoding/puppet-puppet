@@ -88,35 +88,35 @@ class puppet::agent (
     require  => [ Package[$package_name], Service['crond'] ],
   }
 
-  file { 'agent_symlink_puppet':
+  file { 'symlink_puppet':
     ensure  => link,
     path    => $symlink_puppet,
     target  => $symlink_puppet_target,
     require => Package[$package_name],
   }
 
-  file { 'agent_symlink_hiera':
+  file { 'symlink_hiera':
     ensure  => link,
     path    => $symlink_hiera,
     target  => $symlink_hiera_target,
     require => Package[$package_name],
   }
 
-  file {'agent_symlink_facter':
+  file {'symlink_facter':
     ensure  => link,
     path    => $symlink_facter,
     target  => $symlink_facter_target,
     require => Package[$package_name],
   }
 
-  file { 'agent_symlink_cfacter':
+  file { 'symlink_cfacter':
     ensure  => link,
     path    => $symlink_cfacter,
     target  => $symlink_cfacter_target,
     require => Package[$package_name],
   }
 
-  file { 'agent_symlink_mco':
+  file { 'symlink_mco':
     ensure  => link,
     path    => $symlink_mco,
     target  => $symlink_mco_target,
