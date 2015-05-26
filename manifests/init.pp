@@ -21,7 +21,7 @@ class puppet (
   $puppetdb_server     = 'puppetdb.tld',
   $puppetdb_port       = '8081',
   $digest_algorithm    = 'sha256',
-  $archive_files       = true,
+  $archive_files       = 'true',
 ) {
 
   case $serverrole {

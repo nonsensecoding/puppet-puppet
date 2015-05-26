@@ -1,6 +1,6 @@
 ---
 master:
   facts:
-    terminus: <%= $routes_terminus %>
-    cache: <%= $routes_cache %>
+    terminus: <%= $puppet::server::routes_terminus %>
+    cache: <%= $puppet::server::routes_cache %>
 

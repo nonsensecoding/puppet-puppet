@@ -17,10 +17,10 @@ class puppet::server (
   $routes_content       = 'puppet/routes.yaml.epp',
   $routes_terminus      = 'puppetdb',
   $routes_cache         = 'yaml',
-  $autosign_file				= '/etc/puppetlabs/puppet/autosign.conf',
-  $autosign_content			= 'puppet/autosign.conf.epp',
-  $puppetdb_file				= '/etc/puppetlabs/puppet/puppetdb.conf',
-  $puppetdb_content			= 'puppet/puppetdb.conf.epp',
+  $autosign_file	= '/etc/puppetlabs/puppet/autosign.conf',
+  $autosign_content	= 'puppet/autosign.conf.epp',
+  $puppetdb_file	= '/etc/puppetlabs/puppet/puppetdb.conf',
+  $puppetdb_content	= 'puppet/puppetdb.conf.epp',
   $vardir               = '/opt/puppetlabs/server/data/puppetserver',
   $logdir               = '/var/log/puppetlabs/puppetserver',
   $rundir               = '/var/run/puppetlabs/puppetserver',
@@ -42,17 +42,17 @@ class puppet::server (
     content => epp($routes_content),
   }
 
-	if $autosign == 'true' {
-	  file { 'autosign.conf':
-  	  path    => $autosign_file,
-    	content => epp($autosign_content),
-	  }
-	}
+  if $autosign == 'true' {
+    file { 'autosign.conf':
+      path    => $autosign_file,
+      content => epp($autosign_content),
+    }
+  }
 
-	if $storeconfigs_backend == 'puppetdb' {
-		file {'puppetdb.conf':
-  	  path    => $puppetdb_file,
-    	content => epp($puppetdb_content),
-		}
-	}
+  if $storeconfigs_backend == 'puppetdb' {
+    file {'puppetdb.conf':
+      path    => $puppetdb_file,
+      content => epp($puppetdb_content),
+    }
+  }
 }
