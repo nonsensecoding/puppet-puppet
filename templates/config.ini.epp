@@ -1,0 +1,20 @@
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+#
+
+[global]
+# Store mq/db data in a custom directory
+vardir = <%= $::puppet::puppetdb::vardir %>
+# Use an external logback config file
+logging-config = <%= $::puppet::puppetdb::logging_config %>
+
+[command-processing]
+# How many command-processing threads to use, defaults to (CPUs / 2)
+threads = <%= $::puppet::puppetdb::threads %>
+
+# Maximum amount of disk space (in MB) to allow for ActiveMQ persistent message storage
+store-usage = <%= $::puppet::puppetdb::store_usage %>
+
+# Maximum amount of disk space (in MB) to allow for ActiveMQ temporary message storage
+temp-usage = <%= $::puppet::puppetdb::temp_usage %>
+
