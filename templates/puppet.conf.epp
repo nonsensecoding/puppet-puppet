@@ -1,5 +1,5 @@
 # This file is being maintained by Puppet.
-# # DO NOT EDIT
+# DO NOT EDIT
 #
 [main]
 server = <%= $::puppet::server %>
@@ -13,6 +13,7 @@ classfile = <%= $::puppet::agent::classfile %>
 graph = <%= $::puppet::agent::graph %>
 pluginsync = <%= $::puppet::agent::pluginsync %>
 waitforcert = <%= $::puppet::agent::waitforcert %>
+clientbucketdir = <%= $::puppet::agent::clientbucketdir %>
 
 <% if $::puppet::serverrole == 'true' { -%>
 [master]
@@ -25,5 +26,6 @@ autosign = <%= $::puppet::server::autosign %>
 storeconfigs = <%= $::puppet::server::storeconfigs %>
 storeconfigs_backend = <%= $::puppet::server::storeconfigs_backend %>
 reports = <%= $::puppet::server::reports %>
+bucketdir = <%= $::puppet::server::bucketdir %>
 <% } %>
 

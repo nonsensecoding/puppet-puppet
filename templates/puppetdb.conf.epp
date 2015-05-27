@@ -1,3 +1,7 @@
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+#
+
 [main]
 server = <%= $::puppet::puppetdb_server %>
 port = <%= $::puppet::puppetdb_port %>
