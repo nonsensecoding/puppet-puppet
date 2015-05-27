@@ -1,6 +1,6 @@
 # == Class: puppet::server
 #
-# Full description of class puppetagent here.
+# Full description of class puppet::server here.
 #
 # === Authors
 #
@@ -38,6 +38,7 @@ class puppet::server (
   $rundir                           = '/var/run/puppetlabs/puppetserver',
   $pidfile                          = '/var/run/puppetlabs/puppetserver/puppetserver.pid',
   $codedir                          = '/etc/puppetlabs/code',
+  $bucketdir                        = '$vardir/bucket',
   $autosign                         = true,
   $autosign_hostnames               = 'UNDEF',
   $storeconfigs                     = true,

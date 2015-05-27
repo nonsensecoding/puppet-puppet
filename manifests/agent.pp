@@ -11,7 +11,8 @@
 # Copyright 2015 sixt AG
 #
 class puppet::agent (
-  $config_file            = '/etc/puppetlabs/puppet/puppet.conf',
+  $config_dir             = '/etc/puppetlabs/puppet/',
+  $config_file            = 'puppet.conf',
   $config_content         = 'puppet/puppet.conf.epp',
   $symlink_puppet         = '/usr/local/bin/puppet',
   $symlink_puppet_target  = '/opt/puppetlabs/bin/puppet',
@@ -37,6 +38,7 @@ class puppet::agent (
   $graph                  = false,
   $pluginsync             = true,
   $waitforcert            = '120',
+  $clientbucketdir        = '$vardir/clientbucket'
 ) {
 
   include cron
@@ -72,8 +74,9 @@ class puppet::agent (
     require '::puppet::server'
   }
 
-  file { $config_file:
+  file { 'puppet.conf':
     ensure  => present,
+    path    => "${config_dir}/${config_file}",
     content => epp($config_content),
     require => Package[$package_name],
   }
