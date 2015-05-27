@@ -18,16 +18,11 @@ class puppet (
   $default_file_mode   = '0644',
   $server              = 'puppetmaster.tld',
   $ca_server           = 'puppetmaster.tld',
+  $puppetdb_server     = 'puppetdb.tld',
+  $puppetdb_port       = '8081',
   $digest_algorithm    = 'sha256',
-  $archive_files       = true,
+  $archive_files       = 'true',
 ) {
-
-  File {
-    ensure => $default_file_ensure,
-    owner  => $default_file_owner,
-    group  => $default_file_group,
-    mode   => $default_file_mode,
-  }
 
   case $serverrole {
     'true': {
