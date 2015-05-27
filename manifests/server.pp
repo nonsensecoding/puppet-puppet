@@ -22,16 +22,16 @@ class puppet::server (
   $puppetdb_file                    = '/etc/puppetlabs/puppet/puppetdb.conf',
   $puppetdb_content                 = 'puppet/puppetdb.conf.epp',
   $config_dir                       = '/etc/puppetlabs/puppetserver',
-  $config_confd_dir                 = "$config_dir/conf.d",
-  $confd_ca_conf                    = "$config_confd_dir/ca.conf",
+  $config_confd_dir                 = '/etc/puppetlabs/puppetserver/conf.d',
+  $confd_ca_conf                    = 'ca.conf',
   $confd_ca_conf_content            = 'puppet/ca.conf.epp',
-  $confd_global_conf                = "$config_confd_dir/global.conf",
+  $confd_global_conf                = 'global.conf',
   $confd_global_conf_content        = 'puppet/global.conf.epp',
-  $confd_puppetserver_conf          = "$config_confd_dir/puppetserver.conf",
+  $confd_puppetserver_conf          = 'puppetserver.conf',
   $confd_puppetserver_conf_content  = 'puppet/puppetserver.conf.epp',
-  $confd_webroutes_conf             = "$config_confd_dir/web-routes.conf",
-  $confd_webroutes_conf_content     = 'puppet/ca.conf.epp',
-  $confd_webserver_conf             = "$config_confd_dir/webserver.conf",
+  $confd_webroutes_conf             = 'web-routes.conf',
+  $confd_webroutes_conf_content     = 'puppet/webroutes.conf.epp',
+  $confd_webserver_conf             = 'webserver.conf',
   $confd_webserver_conf_content     = 'puppet/webserver.conf.epp',
   $vardir                           = '/opt/puppetlabs/server/data/puppetserver',
   $logdir                           = '/var/log/puppetlabs/puppetserver',
@@ -63,17 +63,26 @@ class puppet::server (
 
   package { $package_name:
     ensure => $package_ensure,
+    notify    => Service['puppetserver'],
+  }
+
+  service {'puppetserver':
+    ensure     => $service_ensure,
+    hasrestart => 'true',
+    hasstatus  => 'true',
   }
 
   file { 'routes.yaml':
     path    => $routes_file,
     content => epp($routes_content),
+    notify    => Service['puppetserver'],
   }
 
   if $autosign == 'true' {
     file { 'autosign.conf':
       path    => $autosign_file,
       content => epp($autosign_content),
+      notify    => Service['puppetserver'],
     }
   }
 
@@ -81,6 +90,7 @@ class puppet::server (
     file {'puppetdb.conf':
       path    => $puppetdb_file,
       content => epp($puppetdb_content),
+      notify    => Service['puppetserver'],
     }
   }
 
@@ -90,39 +100,44 @@ class puppet::server (
   }
 
   file {$config_confd_dir:
-    ensure    => directory,
-    mode      =>  '0755',
-    requires  => File[$config_dir]
+    ensure  => directory,
+    mode    =>  '0755',
+    require => File[$config_dir]
   }
 
   file {'ca.conf':
-    path      => $confd_ca_conf,
-    content   => epp($confd_ca_conf_content),
-    requires  => File[$config_confd_dir],
+    path     => "${config_confd_dir}/${confd_ca_conf}",
+    content  => epp($confd_ca_conf_content),
+    require  => File[$config_confd_dir],
+    notify    => Service['puppetserver'],
   }
 
   file {'global.conf':
-    path      => $confd_global_conf,
-    content   => epp($confd_global_conf_content),
-    requires  => File[$config_confd_dir],
+    path     => "${config_confd_dir}/${confd_global_conf}",
+    content  => epp($confd_global_conf_content),
+    require  => File[$config_confd_dir],
+    notify    => Service['puppetserver'],
   }
 
   file {'puppetserver.conf':
-    path      => $confd_puppetserver_conf,
-    content   => epp($confd_puppetserver_conf_content),
-    requires  => File[$config_confd_dir],
+    path     => "${config_confd_dir}/${confd_puppetserver_conf}",
+    content  => epp($confd_puppetserver_conf_content),
+    require  => File[$config_confd_dir],
+    notify    => Service['puppetserver'],
   }
 
   file {'web-routes.conf':
-    path      => $confd_webroutes_conf,
-    content   => epp($confd_webroutes_conf_content),
-    requires  => File[$config_confd_dir],
+    path     => "${config_confd_dir}/${confd_webroutes_conf}",
+    content  => epp($confd_webroutes_conf_content),
+    require  => File[$config_confd_dir],
+    notify    => Service['puppetserver'],
   }
 
   file {'webserver.conf':
-    path      => $confd_webserver_conf,
+    path      => "${config_confd_dir}/${confd_webserver_conf}",
     content   => epp($confd_webserver_conf_content),
-    requires  => File[$config_confd_dir],
+    require   => File[$config_confd_dir],
+    notify    => Service['puppetserver'],
   }
 
 }
