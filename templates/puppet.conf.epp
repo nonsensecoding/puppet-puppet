@@ -1,0 +1,31 @@
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+#
+[main]
+server = <%= $::puppet::server %>
+archive_files = <%= $::puppet::archive_files %>
+archive_file_server = <%= $::puppet::server %>
+digest_algorithm = <%= $::puppet::digest_algorithm %>
+
+[agent]
+report = <%= $::puppet::agent::report %>
+classfile = <%= $::puppet::agent::classfile %>
+graph = <%= $::puppet::agent::graph %>
+pluginsync = <%= $::puppet::agent::pluginsync %>
+waitforcert = <%= $::puppet::agent::waitforcert %>
+clientbucketdir = <%= $::puppet::agent::clientbucketdir %>
+
+<% if $::puppet::serverrole == 'true' { -%>
+[master]
+vardir = <%= $::puppet::server::vardir %>
+logdir = <%= $::puppet::server::logdir %>
+rundir = <%= $::puppet::server::rundir %>
+pidfile = <%= $::puppet::server::pidfile %>
+codedir = <%= $::puppet::server::codedir %>
+autosign = <%= $::puppet::server::autosign %>
+storeconfigs = <%= $::puppet::server::storeconfigs %>
+storeconfigs_backend = <%= $::puppet::server::storeconfigs_backend %>
+reports = <%= $::puppet::server::reports %>
+bucketdir = <%= $::puppet::server::bucketdir %>
+<% } %>
+
