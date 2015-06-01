@@ -53,8 +53,8 @@ class puppet::server (
   $webserver_ssl_port               = '8140',
   $sysconfig_file                   = '/etc/sysconfig/puppetserver',
   $sysconfig_content                = 'puppet/sysconfig.epp', ## currently working only for el5/el6 systems
-  $runas_user                       = 'puppet'
-  $runas_group                      = 'puppet'
+  $runas_user                       = 'puppet',
+  $runas_group                      = 'puppet',
 ) {
 
 
