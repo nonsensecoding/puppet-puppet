@@ -51,6 +51,10 @@ class puppet::server (
   $profiler                         = 'false',
   $webserver_ssl_host               = '0.0.0.0',
   $webserver_ssl_port               = '8140',
+  $sysconfig_file                   = '/etc/sysconfig/puppetserver',
+  $sysconfig_content                = 'puppet/sysconfig.epp', ## currently working only for el5/el6 systems
+  $runas_user                       = 'puppet'
+  $runas_group                      = 'puppet'
 ) {
 
 
@@ -94,14 +98,31 @@ class puppet::server (
     }
   }
 
+  file { 'sysconfig_puppetserver':
+    path    => $sysconfig_file,
+    content => epp($sysconfig_content),
+    notify    => Service['puppetserver'],
+  }
+
+  file {$codedir:
+    ensure  => directory,
+    mode    => '0755',
+    owner   => $runas_user,
+    group   => $runas_group,
+  }
+
   file {$config_dir:
     ensure  => directory,
     mode    =>  '0755',
+    owner   => $runas_user,
+    group   => $runas_group,
   }
 
   file {$config_confd_dir:
     ensure  => directory,
     mode    =>  '0755',
+    owner   => $runas_user,
+    group   => $runas_group,
     require => File[$config_dir]
   }
 
