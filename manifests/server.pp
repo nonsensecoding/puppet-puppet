@@ -36,6 +36,7 @@ class puppet::server (
   $vardir                           = '/opt/puppetlabs/server/data/puppetserver',
   $logdir                           = '/var/log/puppetlabs/puppetserver',
   $rundir                           = '/var/run/puppetlabs/puppetserver',
+  $bucketdir                        = '/opt/puppetlabs/puppet/cache/bucket',
   $pidfile                          = '/var/run/puppetlabs/puppetserver/puppetserver.pid',
   $codedir                          = '/etc/puppetlabs/code',
   $autosign                         = true,
