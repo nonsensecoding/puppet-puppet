@@ -4,7 +4,7 @@
 #
 # === Authors
 #
-# Maximilian Mayer <maximilian.mayer@sixt.de>
+# Maximilian Mayer <maximilian.mayer@sixt.com>
 #
 # === Copyright
 #
