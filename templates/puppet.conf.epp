@@ -29,5 +29,5 @@ reports = <%= $::puppet::server::reports %>
 <% if $::puppet::server::bucketdir != 'default' {-%>
 bucketdir = <%= $::puppet::server::bucketdir %>
 <% } -%>
-<% } %>
+<% } -%>
 
