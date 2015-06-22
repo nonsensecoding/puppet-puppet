@@ -4,7 +4,11 @@
 #
 # === Authors
 #
+<<<<<<< HEAD
 # Maximilian Mayer <maximilian.mayer@sixt.com>
+=======
+# Maximilian Mayer <maximilian.mayer@sixt.de>
+>>>>>>> b942ea5ad7005048530a996fb0c25d02c482fd43
 #
 # === Copyright
 #
@@ -37,8 +41,11 @@ class puppet::agent (
   $graph                  = false,
   $pluginsync             = true,
   $waitforcert            = '120',
+<<<<<<< HEAD
   $logdest                = 'console',
   $clientbucket_dir       = '/opt/puppetlabs/puppet/cache/clientbucket',
+=======
+>>>>>>> b942ea5ad7005048530a996fb0c25d02c482fd43
 ) {
 
   include cron

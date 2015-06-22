@@ -26,8 +26,12 @@ autosign = <%= $::puppet::server::autosign %>
 storeconfigs = <%= $::puppet::server::storeconfigs %>
 storeconfigs_backend = <%= $::puppet::server::storeconfigs_backend %>
 reports = <%= $::puppet::server::reports %>
+<<<<<<< HEAD
 <% if $::puppet::server::bucketdir != 'default' {-%>
 bucketdir = <%= $::puppet::server::bucketdir %>
 <% } -%>
+=======
+bucketdir = <%= $::puppet::server::bucketdir %>
+>>>>>>> b942ea5ad7005048530a996fb0c25d02c482fd43
 <% } %>
 
