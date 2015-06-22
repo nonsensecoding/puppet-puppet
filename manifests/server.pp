@@ -4,11 +4,7 @@
 #
 # === Authors
 #
-<<<<<<< HEAD
 # Maximilian Mayer <maximilian.mayer@sixt.com>
-=======
-# Maximilian Mayer <maximilian.mayer@sixt.de>
->>>>>>> b942ea5ad7005048530a996fb0c25d02c482fd43
 #
 # === Copyright
 #
@@ -40,10 +36,7 @@ class puppet::server (
   $vardir                           = '/opt/puppetlabs/server/data/puppetserver',
   $logdir                           = '/var/log/puppetlabs/puppetserver',
   $rundir                           = '/var/run/puppetlabs/puppetserver',
-<<<<<<< HEAD
   $bucketdir                        = 'default',
-=======
->>>>>>> b942ea5ad7005048530a996fb0c25d02c482fd43
   $pidfile                          = '/var/run/puppetlabs/puppetserver/puppetserver.pid',
   $codedir                          = '/etc/puppetlabs/code',
   $autosign                         = true,
@@ -51,7 +44,6 @@ class puppet::server (
   $storeconfigs                     = true,
   $storeconfigs_backend             = 'puppetdb',
   $reports                          = 'store,puppetdb',
-<<<<<<< HEAD
   $profiler                         = 'false',
   $webserver_ssl_host               = '0.0.0.0',
   $webserver_ssl_port               = '8140',
@@ -59,16 +51,6 @@ class puppet::server (
   $sysconfig_content                = 'puppet/sysconfig.epp', ## currently working only for el5/el6 systems
   $runas_user                       = 'puppet',
   $runas_group                      = 'puppet',
-=======
-  $master_conf_dir                  = '/etc/puppetlabs/puppet',
-  $master_code_dir                  = '/etc/puppetlabs/code',
-  $master_var_dir                   = '/opt/puppetlabs/server/data/puppetserver',
-  $master_run_dir                   = '/var/run/puppetlabs/puppetserver',
-  $master_log_dir                   = '/var/log/puppetlabs/puppetserver',
-  $profiler                         = 'false',
-  $webserver_ssl_host               = '0.0.0.0',
-  $webserver_ssl_port               = '8140',
->>>>>>> b942ea5ad7005048530a996fb0c25d02c482fd43
 ) {
 
 
@@ -112,7 +94,6 @@ class puppet::server (
     }
   }
 
-<<<<<<< HEAD
   file { 'sysconfig_puppetserver':
     path    => $sysconfig_file,
     content => epp($sysconfig_content),
@@ -131,21 +112,13 @@ class puppet::server (
     mode    =>  '0755',
     owner   => $runas_user,
     group   => $runas_group,
-=======
-  file {$config_dir:
-    ensure  => directory,
-    mode    =>  '0755',
->>>>>>> b942ea5ad7005048530a996fb0c25d02c482fd43
   }
 
   file {$config_confd_dir:
     ensure  => directory,
     mode    =>  '0755',
-<<<<<<< HEAD
     owner   => $runas_user,
     group   => $runas_group,
-=======
->>>>>>> b942ea5ad7005048530a996fb0c25d02c482fd43
     require => File[$config_dir]
   }
 
