@@ -13,7 +13,7 @@ jruby-puppet: {
     gem-home: /opt/puppetlabs/server/data/puppetserver/jruby-gems
 
     # (optional) path to puppet conf dir; if not specified, will use the puppet default
-    master-conf-dir: <%= $::puppet::server::config_dir %>
+    master-conf-dir: <%= $::puppet::server::master_config_dir %>
 
     # (optional) path to puppet code dir; if not specified, will use the puppet default
     master-code-dir: <%= $::puppet::server::codedir %>

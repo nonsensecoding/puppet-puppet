@@ -23,6 +23,7 @@ class puppet::server (
   $puppetdb_content                 = 'puppet/puppetdb.conf.epp',
   $config_dir                       = '/etc/puppetlabs/puppetserver',
   $config_confd_dir                 = '/etc/puppetlabs/puppetserver/conf.d',
+  $master_config_dir                = '/etc/puppetlabs/puppet',
   $confd_ca_conf                    = 'ca.conf',
   $confd_ca_conf_content            = 'puppet/ca.conf.epp',
   $confd_global_conf                = 'global.conf',
