@@ -39,6 +39,7 @@ class puppet::agent (
   $waitforcert            = '120',
   $logdest                = 'console',
   $clientbucket_dir       = '/opt/puppetlabs/puppet/cache/clientbucket',
+  $environment            = 'production',
 ) {
 
   include cron
