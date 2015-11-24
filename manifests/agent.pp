@@ -25,6 +25,7 @@ class puppet::agent (
   $symlink_mco_target     = '/opt/puppetlabs/bin/mco',
   $package_name           = 'puppet-agent',
   $package_ensure         = 'installed',
+  $cron_atreboot          = false,
   $cron_name              = 'cron-puppetagent',
   $cron_user              = 'root',
   $cron_minute            = 'UNSET',
@@ -89,6 +90,16 @@ class puppet::agent (
     monthday => $cron_day,
     command  => $cron_command,
     require  => [ Package[$package_name], Service['crond'] ],
+  }
+
+  if str2bool($cron_atreboot) == true {
+    cron { "${cron_name}_at_reboot":
+      ensure  => 'present',
+      user    => $cron_user,
+      command => $cron_command,
+      special => 'reboot',
+      require => [ Package[$package_name], Service['crond'] ],
+    }
   }
 
   file { 'symlink_puppet':
