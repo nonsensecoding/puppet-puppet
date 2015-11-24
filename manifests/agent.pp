@@ -123,7 +123,7 @@ class puppet::agent (
     require => Package[$package_name],
   }
 
-  if versioncmp($::puppetversion, '4.2') > 0 {
+  if versioncmp($::puppetversion, '4.2') < 0 {
     file { 'symlink_cfacter':
       ensure  => link,
       path    => $symlink_cfacter,
