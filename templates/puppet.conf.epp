@@ -16,7 +16,7 @@ graph = <%= $::puppet::agent::graph %>
 pluginsync = <%= $::puppet::agent::pluginsync %>
 waitforcert = <%= $::puppet::agent::waitforcert %>
 clientbucketdir = <%= $::puppet::agent::clientbucketdir %>
-environment = <%= $::puppet::agent::environment %>
+environment = <%= $::puppet::agent::myenvironment %>
 
 <% if $::puppet::serverrole == 'true' { -%>
 [master]
