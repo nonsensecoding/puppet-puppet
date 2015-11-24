@@ -112,11 +112,13 @@ class puppet::agent (
     require => Package[$package_name],
   }
 
-  file { 'symlink_cfacter':
-    ensure  => link,
-    path    => $symlink_cfacter,
-    target  => $symlink_cfacter_target,
-    require => Package[$package_name],
+  if versioncmp($::puppetversion, '4.2') > 0 {
+    file { 'symlink_cfacter':
+      ensure  => link,
+      path    => $symlink_cfacter,
+      target  => $symlink_cfacter_target,
+      require => Package[$package_name],
+    }
   }
 
   file { 'symlink_mco':
