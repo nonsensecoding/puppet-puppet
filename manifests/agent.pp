@@ -39,7 +39,7 @@ class puppet::agent (
   $pluginsync             = true,
   $waitforcert            = '120',
   $logdest                = 'console',
-  $clientbucket_dir       = '/opt/puppetlabs/puppet/cache/clientbucket',
+  $clientbucketdir        = '/opt/puppetlabs/puppet/cache/clientbucket',
   $environment            = 'production',
 ) {
 

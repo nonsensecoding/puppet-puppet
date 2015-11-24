@@ -3,11 +3,13 @@
 #
 [main]
 server = <%= $::puppet::server %>
+ca_server = <%= $::puppet::ca_server %>
 archive_files = <%= $::puppet::archive_files %>
 archive_file_server = <%= $::puppet::server %>
 digest_algorithm = <%= $::puppet::digest_algorithm %>
 
 [agent]
+certname = <%= $::fqdn %>
 report = <%= $::puppet::agent::report %>
 classfile = <%= $::puppet::agent::classfile %>
 graph = <%= $::puppet::agent::graph %>
