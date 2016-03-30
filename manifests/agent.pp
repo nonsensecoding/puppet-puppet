@@ -68,6 +68,14 @@ class puppet::agent (
     $cron_real_min = $cron_minute
   }
 
+  #prefer custom env fact
+  if $::env {
+    $myenvironment = $::env
+  }
+  else {
+    $myenvironment = $environment
+  }
+
   package { $package_name:
     ensure => $package_ensure,
   }
